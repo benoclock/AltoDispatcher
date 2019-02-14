@@ -19,7 +19,8 @@ class Dispatcher {
     /**
      * Constructor method
      *
-     * @param array $match Array returned by AltoRouter::match()
+     * @param mixed $match Array returned by AltoRouter::match()
+     * @param string|array $fourOFourAction A valid target for the 404 action
      */
     public function __construct($match, $fourOFourAction) {
         // if no route were matched, trigger the 404 action by parsing it so it is called by a later dispatch()
