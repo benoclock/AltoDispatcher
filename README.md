@@ -15,22 +15,15 @@ $router = new AltoRouter();
 
 // Map your routes
 $router->map( 'GET', '/', 'MainController::home', 'home' ); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
-$router->map( 'GET', '/other-page', 'MainController::otherPage', 'home' ); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
+$router->map( 'GET', '/other-page', 'MainController::otherPage', 'other-page' ); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
 // [...]
+$match = $router->match();
 
-// If a route matches current URL
-if ($match) {
-    // You can optionnally add a try/catch here to handle Exceptions
-    // Instanciate the dispatcher
-    $dispatcher = new Dispatcher($match);
-    // then run the dispatch method which will call the mapped method
-    $dispatcher->dispatch();
-}
-else {
-    // 404
-    header('HTTP/1.0 404 Not Found');
-    echo '404'; // display your own 404 page (calling a method of a controller, for example ErrorController::404)
-}
+// You can optionnally add a try/catch here to handle Exceptions
+// Instanciate the dispatcher, give it the $match variable and a fallback action
+$dispatcher = new Dispatcher($match, 'ErrorController::err404');
+// then run the dispatch method which will call the mapped method
+$dispatcher->dispatch();
 ```
 
 ## License
