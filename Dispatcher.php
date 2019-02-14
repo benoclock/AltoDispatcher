@@ -77,8 +77,8 @@ class Dispatcher {
         if (!empty($this->controller) && !empty($this->method)) {
             // controller instanciation
             $controller = new $this->controller();
-            // method call
-            $controller->{$this->method}($this->params);
+            // method call with arguments unpacking
+            $controller->{$this->method}(...array_values($this->params));
         }
         else {
             throw new \Exception('Cannot dispatch : controller or method is empty');
