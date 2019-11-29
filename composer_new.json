@@ -1,0 +1,21 @@
+{
+    "name": "benoclock/alto-dispatcher",
+    "version": "1.0.1",
+    "description": "AltoDispatcher is a simple and easy-to-use class for dispatching after AltoRouter routing",
+    "type": "library",
+    "require": {
+        "php": ">=5.6.0",
+        "altorouter/altorouter": "^2.0.1"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "benoclock",
+            "email": "benjamin@oclock.io"
+        }
+    ],
+    "autoload": {
+        "classmap": ["Dispatcher.php"]
+    },
+    "minimum-stability": "stable"
+}
