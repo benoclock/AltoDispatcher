@@ -1,6 +1,7 @@
 <?php
 
-class Dispatcher {
+class Dispatcher
+{
     /**
      * @var string[]
      */
@@ -32,7 +33,8 @@ class Dispatcher {
      * @param mixed $match Array returned by AltoRouter::match()
      * @param string|array $fourOFourAction A valid target for the 404 action
      */
-    public function __construct($match, $fourOFourAction) {
+    public function __construct($match, $fourOFourAction)
+    {
         // if no route were matched, trigger the 404 action by parsing it so it is called by a later dispatch()
         if (!$match) {
             header('HTTP/1.0 404 Not Found');
@@ -53,20 +55,19 @@ class Dispatcher {
      * @param string|array $target
      * @return void
      */
-    public function parseTarget($target) {
+    public function parseTarget($target)
+    {
         // Getting controller's name and method's name
         // if it's an array
         if (is_array($target)) {
             if (!empty($target['controller']) && !empty($target['method'])) {
                 $this->controller = $target['controller'];
                 $this->method = $target['method'];
-            }
-            else {
+            } else {
                 throw new \Exception('Target (array) of current route is incorrect');
             }
-        }
-        // if it's a string containing controller and method
-        else if (is_string($target)) {
+        } elseif (is_string($target)) {
+            // if it's a string containing controller and method
             // Controller#method or Controller::method or Controller@method
             $availableSeparators = ['#', '::', '@'];
             $separatorFound = false;
@@ -85,8 +86,7 @@ class Dispatcher {
             if (!$separatorFound) {
                 throw new \Exception('Target (string) of current route is incorrect');
             }
-        }
-        else {
+        } else {
             throw new \Exception('Target of current route has incorrect type');
         }
     }
@@ -96,7 +96,8 @@ class Dispatcher {
      *
      * @return void
      */
-    public function dispatch() {
+    public function dispatch()
+    {
         if (!empty($this->controller) && !empty($this->method)) {
             // get Controller FQCN
             $controllerName = $this->controller;
@@ -115,19 +116,16 @@ class Dispatcher {
                 if (is_array($this->controllersArguments)) {
                     // Then, each element will be an argument
                     $controller = new $controllerName(...array_values($this->controllersArguments));
-                }
-                else {
+                } else {
                     // Else, we add only this argument
                     $controller = new $controllerName($this->controllersArguments);
                 }
-            }
-            else {
+            } else {
                 $controller = new $controllerName();
             }
             // method call with arguments unpacking
             $controller->{$this->method}(...array_values($this->params));
-        }
-        else {
+        } else {
             throw new \Exception('Cannot dispatch : controller or method is empty');
         }
     }
@@ -136,7 +134,7 @@ class Dispatcher {
      * Set the value of controllersNamespace property
      *
      * @param string $controllersNamespace
-     */ 
+     */
     public function setControllersNamespace(string $controllersNamespace)
     {
         $this->controllersNamespace = $controllersNamespace;
@@ -146,7 +144,7 @@ class Dispatcher {
      * Set the value of controllersArguments
      *
      * @param mixed $controllersArguments
-     */ 
+     */
     public function setControllersArguments($controllersArguments)
     {
         $this->controllersArguments = $controllersArguments;
