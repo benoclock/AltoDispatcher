@@ -16,8 +16,8 @@ require __DIR__ . '/../vendor/autoload.php';
 $router = new AltoRouter();
 
 // Map your routes
-$router->map( 'GET', '/', 'MainController::home', 'home' ); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
-$router->map( 'GET', '/other-page', 'MainController::otherPage', 'other-page' ); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
+$router->map('GET', '/', 'MainController::home', 'home'); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
+$router->map('GET', '/other-page', 'MainController::otherPage', 'other-page'); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
 // [...]
 $match = $router->match();
 
@@ -40,8 +40,8 @@ require __DIR__ . '/../vendor/autoload.php';
 $router = new AltoRouter();
 
 // Map your routes
-$router->map( 'GET', '/', 'MainController::home', 'home' ); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
-$router->map( 'GET', '/other-page', 'MainController::otherPage', 'other-page' ); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
+$router->map('GET', '/', 'MainController::home', 'home'); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
+$router->map('GET', '/other-page', 'MainController::otherPage', 'other-page'); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
 // [...]
 $match = $router->match();
 
@@ -66,8 +66,8 @@ require __DIR__ . '/../vendor/autoload.php';
 $router = new AltoRouter();
 
 // Map your routes
-$router->map( 'GET', '/', 'MainController::home', 'home' ); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
-$router->map( 'GET', '/other-page', 'MainController::otherPage', 'other-page' ); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
+$router->map('GET', '/', 'MainController::home', 'home'); // MainController::home => AltoDispatcher will instanciate "MainController" and call its "home" method
+$router->map('GET', '/other-page', 'MainController::otherPage', 'other-page'); // MainController::otherPage => AltoDispatcher will instanciate "MainController" and call its "otherPage" method
 // [...]
 $match = $router->match();
 
@@ -79,7 +79,7 @@ $dispatcher->setControllersArguments(
     [
         $router, // Will be first argument
         'foo', // will be the second argument
-        3 // will be the third and last argument
+        3, // will be the third and last argument
     ]
 );
 // then run the dispatch method which will call the mapped method
