@@ -145,7 +145,7 @@ class Dispatcher
      *
      * @param mixed $controllersArguments
      */
-    public function setControllersArguments($controllersArguments)
+    public function setControllersArguments(...$controllersArguments)
     {
         $this->controllersArguments = $controllersArguments;
     }

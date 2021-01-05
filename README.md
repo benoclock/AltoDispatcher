@@ -74,14 +74,8 @@ $match = $router->match();
 // You can optionnally add a try/catch here to handle Exceptions
 // Instanciate the dispatcher, give it the $match variable and a fallback action
 $dispatcher = new Dispatcher($match, 'ErrorController::err404');
-// Setup controllers argument
-$dispatcher->setControllersArguments(
-    [
-        $router, // Will be first argument
-        'foo', // will be the second argument
-        3, // will be the third and last argument
-    ]
-);
+// Setup controllers argument(s)
+$dispatcher->setControllersArguments($router, 'foo', 3);
 // then run the dispatch method which will call the mapped method
 $dispatcher->dispatch();
 ```
