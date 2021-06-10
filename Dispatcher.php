@@ -28,6 +28,11 @@ class Dispatcher
     private $method;
 
     /**
+     * @var string
+     */
+    private $role = null;
+
+    /**
      * Constructor method
      *
      * @param mixed $match Array returned by AltoRouter::match()
@@ -63,6 +68,12 @@ class Dispatcher
             if (!empty($target['controller']) && !empty($target['method'])) {
                 $this->controller = $target['controller'];
                 $this->method = $target['method'];
+
+                // Adding a key 'role' in target params to specify needed roles for current route (can be null)
+                if (isset($target['role'])) {
+                    $this->role     = $target['role'];
+                }
+
             } else {
                 throw new \Exception('Target (array) of current route is incorrect');
             }
@@ -76,8 +87,11 @@ class Dispatcher
                 if (strpos($target, $currentSeparator) !== false) {
                     $separatorFound = true;
                     $explodedInfos = explode($currentSeparator, $target);
+
                     $this->controller = $explodedInfos[0];
                     $this->method = $explodedInfos[1];
+                    // Not sure this can be done
+                    $this->role = $explodedInfos[2];
 
                     break;
                 }
